@@ -158,8 +158,6 @@ def _invalid_url(url):
 
 class Client(object):
     def __init__(self):
-        self.last_state = 0
-        self.state = 0
         self.context = Context()
 
         self._online_lock = Lock()  # lock for online message published

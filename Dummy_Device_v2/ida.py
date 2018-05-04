@@ -1,5 +1,5 @@
 import random
-
+import time
 from dan import NoData
 
 ### The register server host, you can use IP or Domain.
@@ -21,11 +21,11 @@ host = '140.113.199.198'
 username = '0416213'
 
 ### The Device Model in IoTtalk, please check IoTtalk document.
-device_model = 'DM_0416213'
+device_model = 'Dummy_Device'
 
 ### The input/output device features, please check IoTtalk document.
 idf_list = ['Dummy_Sensor']
-odf_list = ['odf_0416213']
+odf_list = ['Dummy_Control']
 
 ### Set the push interval, default = 1 (sec)
 ### Or you can set to 0, and control in your feature input function.
@@ -37,12 +37,29 @@ interval = {
 def register_callback():
     print('register successfully')
 
+before = 0
+after = 0
+
 def Dummy_Sensor():
+    global before
+    before = time.time()
     return random.randint(0, 100)
     # return NoData
 
+cnt = 0
+total = 0
 def Dummy_Control(data):  # data is a list
-    print(data[0])
+    global cnt
+    global after
+    global total
+    after = time.time()
+    cnt += 1
+    if cnt == 10:
+        print("avg: {}".format(total / 10))
+    elif cnt < 10:
+        print("time: {}".format(after - before))
+        total += (after - before)
+
 
 last_state = 0
 state = 0
