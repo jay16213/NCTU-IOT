@@ -34,9 +34,6 @@ interval = {
     'Dummy_Sensor': 3,  # assign feature interval
 }
 
-last_state = 0
-state = 0
-
 def register_callback():
     print('register successfully')
 
@@ -47,13 +44,18 @@ def Dummy_Sensor():
 def Dummy_Control(data):  # data is a list
     print(data[0])
 
-def odf_0416213(data):
-    print(data[0])
+last_state = 0
+state = 0
 
+def odf_0416213(data):
+    # print(data[0])
+
+    global last_state
+    global state
     if data != None:
-        #print(value[0])
+        # print(value[0])
         if data[0] >= 0:
-            # last_state = state
+            last_state = state
             state = 1
         else:
             last_state = state
