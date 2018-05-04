@@ -1,9 +1,9 @@
  $(function(){
         csmapi.set_endpoint ('http://140.113.199.204:9999');
         var profile = {
-		    'dm_name': '0416213',
-			'idf_list':[Dummy_Sensor],
-			'odf_list':[js_0416213_ODF],
+            'dm_name': '0416213',
+            'idf_list':[Dummy_Sensor],
+            'odf_list':[js_0416213_ODF],
         };
 
         var last_state = 0;
