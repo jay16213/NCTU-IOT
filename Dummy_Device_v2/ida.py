@@ -50,7 +50,6 @@ cnt = 0
 total = 0
 def Dummy_Control(data):  # data is a list
     global cnt
-    global after
     global total
     after = time.time()
     cnt += 1
@@ -59,6 +58,7 @@ def Dummy_Control(data):  # data is a list
     elif cnt < 10:
         print("time: {}".format(after - before))
         total += (after - before)
+    time.sleep(1)
 
 
 last_state = 0

@@ -34,4 +34,4 @@ while True:
         print(e)
         DAN.device_registration_with_retry(ServerIP, Reg_addr)
 
-    time.sleep(0.2)
+    time.sleep(1)
