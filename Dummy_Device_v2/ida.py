@@ -57,13 +57,13 @@ def Dummy_Control(data):  # data is a list
     if data != None:
         after = time.time()
         # print("after: {}".format(after))
-        cnt += 1
         if cnt == 10:
             print("avg: {}".format(total / 10))
         elif cnt < 10:
             print("time: {}".format(after - before))
             total += (after - before)
-        time.sleep(1)
+        cnt += 1
+        # time.sleep(1)
 
 
 last_state = 0
