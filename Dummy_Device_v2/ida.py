@@ -43,6 +43,7 @@ after = 0
 def Dummy_Sensor():
     global before
     before = time.time()
+    # print("before: {}".format(before))
     return random.randint(0, 100)
     # return NoData
 
@@ -51,14 +52,18 @@ total = 0
 def Dummy_Control(data):  # data is a list
     global cnt
     global total
-    after = time.time()
-    cnt += 1
-    if cnt == 10:
-        print("avg: {}".format(total / 10))
-    elif cnt < 10:
-        print("time: {}".format(after - before))
-        total += (after - before)
-    time.sleep(1)
+    global before
+    global after
+    if data != None:
+        after = time.time()
+        # print("after: {}".format(after))
+        cnt += 1
+        if cnt == 10:
+            print("avg: {}".format(total / 10))
+        elif cnt < 10:
+            print("time: {}".format(after - before))
+            total += (after - before)
+        time.sleep(1)
 
 
 last_state = 0

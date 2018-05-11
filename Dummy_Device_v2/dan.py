@@ -31,12 +31,9 @@ from uuid import UUID, uuid4
 
 from paho.mqtt import client as mqtt
 
-#DAN_COLOR = "\033[1;35m"
-DAN_COLOR = ''
-#DEFAULT_COLOR = "\033[0m"
-DEFAULT_COLOR = ''
-#DATA_COLOR = "\033[1;33m"
-DATA_COLOR = ''
+DAN_COLOR = "" #"\033[1;35m"
+DEFAULT_COLOR = "" #"\033[0m"
+DATA_COLOR = "" #"\033[1;33m"
 
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger("{}DAN{}".format(DAN_COLOR, DEFAULT_COLOR))
@@ -423,7 +420,7 @@ class Client(object):
 
         return response.json()
 
-    def push(self, idf, data, block=False, tag=None):
+    def push(self, idf, data, block=False):
         '''
         Push data to IoTtalk server.
 
@@ -439,11 +436,11 @@ class Client(object):
             return False
 
         data = data if isinstance(data, list) else [data]
-        payload = json.dumps([data, tag])
+        data = json.dumps(data)
 
         pub = ctx.mqtt_client.publish(
             self.context.i_chans[idf],
-            payload,
+            data,
         )
 
         if block:
